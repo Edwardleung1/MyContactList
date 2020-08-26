@@ -55,6 +55,8 @@ class UI {
 // Store Class: Handles Storage
 
 // Event: Display Contacts
+// As soon as DOM loads, call the UI.displayContacts()
+document.addEventListener("DOMContentLoaded", UI.displayContacts);
 
 // Event: Add a Contact
 
