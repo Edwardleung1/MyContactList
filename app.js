@@ -59,6 +59,25 @@ class UI {
       target.parentElement.parentElement.remove();
     }
   }
+
+  // Show alert on form input fields
+  static showAlert(alertMessage, className) {
+    // Build div from scratch
+    const div = document.createElement("div");
+    // Add className to the div
+    div.className = `alert alert-${className}`;
+    // Add alert message text to the div
+    div.appendChild(document.createTextNode(alertMessage));
+    // Insert it into the UI using a parent element (container)
+    const container = document.querySelector(".container");
+    const form = document.querySelector("#contact-form");
+    // Insert the div before the form
+    container.insertBefore(div, form);
+    // Set a timeout to remove the alert after 3 seconds
+    setTimeout(function () {
+      document.querySelector(".alert").remove();
+    }, 3000);
+  }
 }
 
 // 3. Store Class: Handles Storage
@@ -80,7 +99,9 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 
   // Validation check on form fields
   if (firstName === "" || lastName === "" || mobileNumber === "") {
-    alert("Please fill in all the fields");
+    UI.showAlert("Please fill in all the fields", "danger");
+  } else if (isNaN(mobileNumber) || mobileNumber.length != 11) {
+    UI.showAlert("Please enter a valid UK mobile Number", "danger");
   } else {
     // Instantiate a contact
     const contact = new Contact(firstName, lastName, mobileNumber);
