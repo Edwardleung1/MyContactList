@@ -11,20 +11,8 @@ class Contact {
 // Create a static method for the UI Class
 class UI {
   static displayContacts() {
-    const StoredContacts = [
-      {
-        firstName: "Edward",
-        lastName: "Leung",
-        mobileNumber: "07700900796",
-      },
-      {
-        firstName: "Nathan",
-        lastName: "Lee",
-        mobileNumber: "07755932781",
-      },
-    ];
-
-    const contacts = StoredContacts;
+    // Get contacts from Local storage
+    const contacts = Storage.getContacts();
 
     // Loop through contacts in array
     contacts.forEach(function (contact) {
@@ -150,6 +138,9 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 
     // Add new Contact to UI (table)
     UI.addContactToList(contact);
+
+    // Add new Contact to local storage
+    Storage.addContact(contact);
 
     // Show success alert message when added new contact
     UI.showAlert("New contact added", "success");
