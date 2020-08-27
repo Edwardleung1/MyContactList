@@ -78,18 +78,23 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
   const lastName = document.querySelector("#lastName").value;
   const mobileNumber = document.querySelector("#mobileNumber").value;
 
-  // Instantiate a contact
-  const contact = new Contact(firstName, lastName, mobileNumber);
+  // Validation check on form fields
+  if (firstName === "" || lastName === "" || mobileNumber === "") {
+    alert("Please fill in all the fields");
+  } else {
+    // Instantiate a contact
+    const contact = new Contact(firstName, lastName, mobileNumber);
 
-  // Add new Contact to UI (table)
-  UI.addContactToList(contact);
+    // Add new Contact to UI (table)
+    UI.addContactToList(contact);
 
-  // Clear contact form fields after submit
-  document.getElementById("contact-form").reset();
+    // Clear contact form fields after submit
+    document.getElementById("contact-form").reset();
+  }
 });
 
 // 6. Event: Remove a Contact
-// Event propagation
+// Event propagation to target the actual contact list
 document.querySelector("#contact-list").addEventListener("click", (e) => {
   UI.deleteContact(e.target);
 });
