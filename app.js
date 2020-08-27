@@ -109,6 +109,9 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
     // Add new Contact to UI (table)
     UI.addContactToList(contact);
 
+    // Show success alert message when added new contact
+    UI.showAlert("New contact added", "success");
+
     // Clear contact form fields after submit
     document.getElementById("contact-form").reset();
   }
