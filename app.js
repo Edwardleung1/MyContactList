@@ -108,8 +108,20 @@ class Storage {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 
-  // Remove a contact
-  static removeContact(contact) {}
+  // Remove a contact, using mobile as an unique primary key
+  static removeContact(mobileNumber) {
+    const contacts = Storage.getContacts();
+    // Loop through the contacts
+    contacts.forEach((contact, index) => {
+      // Check if mobileNumber matches the remove contact
+      if (contact.mobileNumber === mobileNumber) {
+        // Remove it using splice
+        contacts.splice(index, 1);
+      }
+    });
+    // Reset local storage with removed contact
+    localStorage.setItem("contacts", JSON.stringify(books));
+  }
 }
 
 // 4. Event: Display Contacts
