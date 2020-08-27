@@ -121,4 +121,7 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 // Event propagation to target the actual contact list
 document.querySelector("#contact-list").addEventListener("click", (e) => {
   UI.deleteContact(e.target);
+
+  // Show success alert message when deleted a contact
+  UI.showAlert("Contact deleted", "success");
 });
