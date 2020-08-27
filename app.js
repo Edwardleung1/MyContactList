@@ -1,4 +1,4 @@
-// Contact Class: Represents a Contact
+// 1. Contact Class: Represents a Contact
 class Contact {
   constructor(firstName, lastName, mobileNumber) {
     this.firstName = firstName;
@@ -7,7 +7,7 @@ class Contact {
   }
 }
 
-// UI Class: Handles UI Tasks
+// 2. UI Class: Handles UI Tasks
 // Create a static method for the UI Class
 class UI {
   static displayContacts() {
@@ -52,13 +52,13 @@ class UI {
   }
 }
 
-// Store Class: Handles Storage
+// 3. Store Class: Handles Storage
 
-// Event: Display Contacts
+// 4. Event: Display Contacts
 // As soon as DOM loads, call the UI.displayContacts()
 document.addEventListener("DOMContentLoaded", UI.displayContacts);
 
-// Event: Add a Contact
+// 5. Event: Add a Contact
 // Listen for a submit button on the form
 document.querySelector("#contact-form").addEventListener("submit", (e) => {
   // Prevent actual submit
@@ -74,6 +74,9 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 
   // Add new Contact to UI (table)
   UI.addContactToList(contact);
+
+  // Clear contact form fields after submit
+  document.getElementById("contact-form").reset();
 });
 
-// Event: Remove a Contact
+// 6. Event: Remove a Contact
