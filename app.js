@@ -108,7 +108,7 @@ class Storage {
       }
     });
     // Reset local storage with removed contact
-    localStorage.setItem("contacts", JSON.stringify(books));
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 }
 
@@ -153,8 +153,11 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 // 6. Event: Remove a Contact
 // Event propagation to target the actual contact list
 document.querySelector("#contact-list").addEventListener("click", (e) => {
+  // Remove contact from UI
   UI.deleteContact(e.target);
-
+  // Remove contact from local storage
+  // Need to get to mobileNumber which will be passed onto remove contact
+  Storage.removeContact(e.target.parentElement.previousElementSibling.textContent);
   // Show success alert message when deleted a contact
   UI.showAlert("Contact deleted", "success");
 });
