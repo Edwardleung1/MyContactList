@@ -50,6 +50,15 @@ class UI {
     // Append row to the list
     list.appendChild(row);
   }
+
+  // Delete a contact
+  static deleteContact(target) {
+    // Make sure it has a delete class before we do anything
+    if (target.classList.contains("delete")) {
+      // Remove the whole element, td to tr
+      target.parentElement.parentElement.remove();
+    }
+  }
 }
 
 // 3. Store Class: Handles Storage
@@ -80,3 +89,7 @@ document.querySelector("#contact-form").addEventListener("submit", (e) => {
 });
 
 // 6. Event: Remove a Contact
+// Event propagation
+document.querySelector("#contact-list").addEventListener("click", (e) => {
+  UI.deleteContact(e.target);
+});
