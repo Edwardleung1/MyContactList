@@ -59,5 +59,21 @@ class UI {
 document.addEventListener("DOMContentLoaded", UI.displayContacts);
 
 // Event: Add a Contact
+// Listen for a submit button on the form
+document.querySelector("#contact-form").addEventListener("submit", (e) => {
+  // Prevent actual submit
+  e.preventDefault();
+
+  // Get form values
+  const firstName = document.querySelector("#firstName").value;
+  const lastName = document.querySelector("#lastName").value;
+  const mobileNumber = document.querySelector("#mobileNumber").value;
+
+  // Instantiate a contact
+  const contact = new Contact(firstName, lastName, mobileNumber);
+
+  // Add new Contact to UI (table)
+  UI.addContactToList(contact);
+});
 
 // Event: Remove a Contact
