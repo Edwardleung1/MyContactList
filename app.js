@@ -81,6 +81,36 @@ class UI {
 }
 
 // 3. Store Class: Handles Storage
+class Storage {
+  // Static so we can call them directly without instantiate storage
+  // Get contacts
+  static getContacts() {
+    // Init variable called contacts
+    let contacts;
+    // Check if local contact item in storage
+    if (localStorage.getItem("contacts") === null) {
+      contacts = [];
+    } else {
+      // Stored as a string, so need to parse it into an JS array object
+      contacts = JSON.parse(localStorage.getItem("contacts"));
+    }
+    return contacts;
+  }
+
+  // Add a contact
+  static addContact(contact) {
+    // Get contacts from local storage
+    const contacts = Storage.getContacts();
+    // Push new contact into it
+    contacts.push(contact);
+    // Reset it to local storage
+    // Contacts is an array of objects, stringify coverts it to a JSON string
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }
+
+  // Remove a contact
+  static removeContact(contact) {}
+}
 
 // 4. Event: Display Contacts
 // As soon as DOM loads, call the UI.displayContacts()
